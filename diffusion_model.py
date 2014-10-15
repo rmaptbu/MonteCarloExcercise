@@ -12,10 +12,10 @@ def energy(density, D=1.0):
 	# implementation goes here
   
 	E=0.0
-	for i in range(len(density)):
-		E += density[i]*density[i-1];
+	for i in range(len(density)-1):
+		E += density[i+1]*density[i]
 	E*=D
 	print E
-	return E;
+	return E
 	
 energy ([5.0, 6.0],1.0)
