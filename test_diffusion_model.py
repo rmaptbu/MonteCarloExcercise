@@ -5,4 +5,4 @@ def test_energy():
   
   from nose.tools import assert_equal
   assert_equal(energy([0.0,0.0],1.0), 0)
-  assert_equal(energy([4.0,5.0],1.0), 20)
+  assert_equal(energy([4.0,5.0],1.0), 10)
