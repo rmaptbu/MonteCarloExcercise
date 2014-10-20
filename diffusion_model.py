@@ -18,4 +18,4 @@ def energy(density, D=1.0):
 	print E
 	return E
 	
-energy ([5.0, 6.0],1.0)
+
