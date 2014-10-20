@@ -4,10 +4,11 @@ def MonteCarlo(E_module, E_function,density,temperature=0):
 	"""
 	import sys
 	import random
+	import numpy
 	from random import randrange
 	if E_module in sys.modules:
 		Energy=getattr(sys.modules[E_module],E_function)	#set function "energy" as hamiltonian
-		E1=Energy(density)
+		E0=Energy(density)
 		
 		particle=randrange(0,len(density))		#select random particle
 		if density[particle] >= 1:				#move particle away if it exists
@@ -16,10 +17,13 @@ def MonteCarlo(E_module, E_function,density,temperature=0):
 				density[particle+1]+=1
 			else:
 				density[particle-1]+=1
-		E2=Energy(density)
+		E1=Energy(density)
 		
+		print "E0 is ", E0
 		print "E1 is ", E1
-		print "E2 is ", E2
+		
+		if E1>E0 and exp(-(E1-E0)/temperature)<random.random()
+		
 	else:
 		raise NameError('Energy Module not loaded')
 	
