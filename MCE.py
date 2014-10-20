@@ -1,11 +1,10 @@
-def MonteCarlo(E,density,temperature=0):
+def MonteCarlo(E_module, E_function,density,temperature=0):
 	""" Minimise energy of given Hamiltonian
-		need input: Hamiltonian (energy), starting point (density)
+		need input: Hamiltonian (E_module.E_function), starting point (density)
 	"""
-	from diffusion_model import energy
-	if E in locals():
-		locals()[E](density)
+	import sys
+	if E_module in sys.modules:
+		print getattr(sys.modules[E_module],E_function)(density)
 	else:
-		raise NameError('energy function not found')
-
-MonteCarlo ("energy",[2.0, 1.0])
+		raise NameError('Energy Module not loaded')
+	
