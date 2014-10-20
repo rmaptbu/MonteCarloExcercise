@@ -15,7 +15,6 @@ def energy(density, D=1.0):
 	for i in range(len(density)-1):
 		E += density[i+1]*density[i]
 	E*=D/2.0
-	print E
 	return E
 	
 
