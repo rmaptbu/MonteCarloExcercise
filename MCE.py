@@ -1,4 +1,4 @@
-def MonteCarlo(E_module, E_function,density,temperature=1):
+def MonteCarlo(E_module, E_function,density,temperature=0):
 	""" ONE STEP towards minimising energy of given Hamiltonian
 		need input: Hamiltonian (E_module.E_function), starting point (density)
 	"""
@@ -31,12 +31,17 @@ def MonteCarlo(E_module, E_function,density,temperature=1):
 		print "density0 is ", density
 		print "density1 is  ", temp_density
 		
-		if E1>E0 and exp(-(E1-E0)/temperature)<random.random(): #change passed
-			density=temp_density
-			print "step accepted"
+		if E1>E0:
+			if temperature == 0:
+				density=temp_density #always accept change at zero temperature
+				print "step accepted"
+			elif temperature>0 and exp(-(E1-E0)/temperature)<random.random(): #change passed:			
+				density=temp_density
+				print "step accepted"
+			else:
+				print "step rejected due to Boltzmann"
 		else:
-			print "step not accepted"
-		
+			print "step increased energy"		
 	else:
 		raise NameError('Energy Module not loaded')
 	
