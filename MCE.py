@@ -32,16 +32,15 @@ def MonteCarlo(E_module, E_function,density,temperature=0):
 		print "density1 is  ", temp_density
 		
 		if E1>E0:
-			if temperature == 0:
-				density=temp_density #always accept change at zero temperature
-				print "step accepted"
-			elif temperature>0 and exp(-(E1-E0)/temperature)<random.random(): #change passed:			
+			if temperature>0 and exp(-(E1-E0)/temperature)>random.random(): #change passed:			
 				density=temp_density
-				print "step accepted"
+				print "step accepted due to Boltzmann"
 			else:
-				print "step rejected due to Boltzmann"
+				print "step rejected"
 		else:
-			print "step increased energy"		
+			density=temp_density
+			print "step accepted (lower enegy)"	
+		return density
 	else:
 		raise NameError('Energy Module not loaded')
 	

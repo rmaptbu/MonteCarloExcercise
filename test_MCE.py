@@ -12,7 +12,7 @@ def test_MonteCarlo():
 	#minimum energy state doesn't change at absolute zero
 	for n in range (3): #try three times
 		density=[1.0,1.0,1.0,1.0]
-		MonteCarlo ("diffusion_model","energy",density,0)
+		density=MonteCarlo ("diffusion_model","energy",density,0)
 		assert_equal(density,[1.0,1.0,1.0,1.0])
 	
 	#energy state lowers until minimum energy state is reached at absolute zero or iterated 100 times
@@ -28,11 +28,11 @@ def test_MonteCarlo():
 		x=100
 		MCEnergy=[]
 		while (max(density)-min(density)>=2) and x>0: #if distribution is non-uniform energy minimum is not reached
-			MonteCarlo("diffusion_model","energy",density,0)
 			MCEnergy.append(energy(density))
+			density=MonteCarlo("diffusion_model","energy",density,0)
 			x-=1
 		print "energy changed by ", MCEnergy
-		plt.hist(MCEnergy)
+		plt.plot(MCEnergy)
 		plt.show()
-	assert_true(E0>=energy(density))
+	assert_true(E0>energy(density))
 		
