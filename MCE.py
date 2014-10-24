@@ -4,7 +4,7 @@ def MonteCarlo(E_module, E_function,density,temperature=1):
 	"""
 	import sys
 	import random
-	import numpy
+	from numpy import exp
 	from random import randrange
 	if E_module in sys.modules:						#does module exist?
 		Energy=getattr(sys.modules[E_module],E_function)	#set function "energy" as hamiltonian
@@ -14,7 +14,8 @@ def MonteCarlo(E_module, E_function,density,temperature=1):
 		particle=randrange(0,len(temp_density))		#select random particle
 		if temp_density[particle] >= 1:				#move particle away if it exists
 			temp_density[particle]-=1
-			if particle>0 and particle<len(temp_density):
+			print "particle position ", particle
+			if particle>0 and particle<(len(temp_density)-1):
 			#place particle randomly to the left or right if the outermost particle wasnt removed
 				if bool(random.getrandbits(1)):	
 					temp_density[particle+1]+=1
