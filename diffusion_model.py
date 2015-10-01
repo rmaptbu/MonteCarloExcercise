@@ -10,10 +10,10 @@ def energy(density, D=1.0):
           Diffusion coefficient.
 	"""
 	# implementation goes here
-	from numpy import array, any, sum
-	density=array(density)
+  
 	E=0.0
-	E=sum(density*(density - 1))
+	for i in range(len(density)-1):
+		E += density[i+1]*density[i]
 	E*=D/2.0
 	return E
 	
